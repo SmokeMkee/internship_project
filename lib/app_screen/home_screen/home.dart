@@ -27,7 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final id = _productCategory[index].id;
     final productCategoryName = _productCategory[index].name;
     Navigator.of(context).pushNamed('/main_screen/home_screen/product_details',
-        arguments: {'user': widget.user, 'id': id , 'productCategoryName' : productCategoryName});
+        arguments: {
+          'user': widget.user,
+          'id': id,
+          'productCategoryName': productCategoryName
+        });
   }
 
   @override

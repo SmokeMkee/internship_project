@@ -5,10 +5,12 @@ import 'package:internship_project/app_screen/profile_screen/profile.dart';
 import 'package:internship_project/model/User.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:async';
+
 class NavBar extends StatefulWidget {
   User user;
   int selected_index = 0;
-  NavBar({Key? key, required this.user , required this.selected_index}) : super(key: key);
+  NavBar({Key? key, required this.user, required this.selected_index})
+      : super(key: key);
 
   @override
   _NavBarState createState() => _NavBarState();
@@ -17,21 +19,23 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int _selectedPage = 0;
   @override
-  initState(){
+  initState() {
     _selectedPage = widget.selected_index;
-    connection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    connection = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
       // whenevery connection status is changed.
-      if(result == ConnectivityResult.none){
+      if (result == ConnectivityResult.none) {
         //there is no any connection
         setState(() {
           isoffline = true;
         });
-      }else if(result == ConnectivityResult.mobile){
+      } else if (result == ConnectivityResult.mobile) {
         //connection is mobile data network
         setState(() {
           isoffline = false;
         });
-      }else if(result == ConnectivityResult.wifi) {
+      } else if (result == ConnectivityResult.wifi) {
         //connection is from wifi
         setState(() {
           isoffline = false;
@@ -40,12 +44,12 @@ class _NavBarState extends State<NavBar> {
     });
     super.initState();
   }
+
   @override
   void dispose() {
     connection!.cancel();
     super.dispose();
   }
-
 
   void onSelectPage(int index) {
     setState(() {
@@ -53,22 +57,17 @@ class _NavBarState extends State<NavBar> {
     });
   }
 
-
   StreamSubscription? connection;
   bool isoffline = false;
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(isoffline?"Device is Offline":"Wish Swish" ,style: const TextStyle(
-          color: Colors.white
-        ),),
+        title: Text(
+          isoffline ? "Device is Offline" : "Wish Swish",
+          style: const TextStyle(color: Colors.white),
+        ),
         backgroundColor: Color.fromRGBO(12, 64, 166, 1),
       ),
       body: Center(

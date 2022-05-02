@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             showUnselectedLabels: true,
-
             selectedItemColor: Color.fromRGBO(68, 167, 184, 1),
             unselectedItemColor: Color.fromRGBO(144, 153, 170, 1),
             unselectedLabelStyle:
@@ -44,7 +43,10 @@ class MyApp extends StatelessWidget {
         '/auth': (context) => const LoginPage(),
         '/main_screen': (context) {
           final user = ModalRoute.of(context)!.settings.arguments as User;
-          return NavBar(user: user, selected_index: 0,);
+          return NavBar(
+            user: user,
+            selected_index: 0,
+          );
         },
         '/main_screen/home_screen': (context) {
           final user = ModalRoute.of(context)!.settings.arguments as User;
@@ -63,11 +65,18 @@ class MyApp extends StatelessWidget {
         '/main_screen/basket': (context) {
           final user =
               ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
-          return NavBar(user:user['user'] as User, selected_index: user['selected_index'] as int ,);
+          return NavBar(
+            user: user['user'] as User,
+            selected_index: user['selected_index'] as int,
+          );
         },
         '/main_screen/profile': (context) {
-          final user = ModalRoute.of(context)!.settings.arguments as Map<String, Object> ;
-          return NavBar(user:user['user'] as User, selected_index: user['selected_index'] as int ,);
+          final user =
+              ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
+          return NavBar(
+            user: user['user'] as User,
+            selected_index: user['selected_index'] as int,
+          );
         },
       },
       initialRoute: '/auth',

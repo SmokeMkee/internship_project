@@ -4,10 +4,14 @@ import 'package:internship_project/model/Product.dart';
 import 'package:internship_project/model/User.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-   ProductDetailsScreen({Key? key, required this.id, required this.user , required this.productCategoryName})
+  ProductDetailsScreen(
+      {Key? key,
+      required this.id,
+      required this.user,
+      required this.productCategoryName})
       : super(key: key);
   final int id;
-  final String productCategoryName ;
+  final String productCategoryName;
   final User user;
 
   @override
@@ -92,7 +96,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
     widget.user.basket.add(product);
     Navigator.of(context).pushReplacementNamed('/main_screen/basket',
-        arguments: {'user': widget.user, 'selected_index' : 1});
+        arguments: {'user': widget.user, 'selected_index': 1});
     return product;
   }
 
@@ -100,9 +104,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.productCategoryName , style: TextStyle(
-            color: Colors.white
-          ),),
+          title: Text(
+            widget.productCategoryName,
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Color.fromRGBO(12, 64, 166, 1),
         ),
         body: FutureBuilder(

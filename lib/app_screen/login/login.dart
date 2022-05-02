@@ -63,7 +63,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: const [
                     Text(
                       'Сделай жизнь проще',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -81,7 +82,9 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   controller: email,
                   decoration: InputDecoration(
@@ -121,17 +124,18 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Color.fromRGBO(12, 64, 166, 1))
-                        ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Color.fromRGBO(12, 64, 166, 1))),
                           onPressed: () {
                             auth(email.text, password.text);
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 20),
-                            child: const Text('Войти' , style: TextStyle(
-                              color: Colors.white
-                            ),),
+                            child: const Text(
+                              'Войти',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           )),
                     )
                   ],

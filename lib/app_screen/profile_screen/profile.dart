@@ -31,118 +31,137 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          child: Column(
-            children: [
-               image_picker(  user:user,),
-              FutureBuilder(
-                future: getUserOrder(),
-                builder: (BuildContext context, AsyncSnapshot<List<Order>> snapshot) {
-                  if (snapshot.data == null) {
-                    return const Center(
-                      child: Text('loading...'),
-                    );
-                  } else {
-                    return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const Text('История покупок'),
-                          ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (BuildContext context, int index1) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10 ),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromRGBO(246, 246, 246, 1),
-                                        borderRadius: BorderRadius.circular(12)),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.symmetric(
-                                                      vertical: 15, horizontal: 15),
-                                                  child: Text(
-                                                    'Заказ №' +
-                                                        snapshot.data![index1].orderNumber
-                                                            .toString(),
-                                                    style: const TextStyle(
-                                                        fontSize: 17,
-                                                        fontWeight: FontWeight.w600),
-                                                  ),
-                                                )),
-                                            Text(
-                                              snapshot.data![index1].amountProduct
-                                                  .toString() +
-                                                  ' ₽',
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ],
-                                        ),
-                                        ListView.builder(
-                                            physics: NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: snapshot
-                                                .data![index1].listProducts.length,
-                                            itemBuilder:
-                                                (BuildContext context, int index2) {
-                                              return Row(
-                                                children: [
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                      const EdgeInsets.symmetric(
-                                                          vertical: 10,
-                                                          horizontal: 15),
-                                                      child: Text(
-                                                        snapshot
-                                                            .data![index1]
-                                                            .listProducts[index2]
-                                                            .nameProduct
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                            FontWeight.w400),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: Column(
+              children: [
+                image_picker(
+                  user: user,
+                ),
+                FutureBuilder(
+                  future: getUserOrder(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Order>> snapshot) {
+                    if (snapshot.data == null) {
+                      return const Center(
+                        child: Text('loading...'),
+                      );
+                    } else {
+                      return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            const Text('История покупок'),
+                            ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.length,
+                                itemBuilder:
+                                    (BuildContext context, int index1) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromRGBO(
+                                              246, 246, 246, 1),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 15,
+                                                        horizontal: 15),
+                                                child: Text(
+                                                  'Заказ №' +
+                                                      snapshot.data![index1]
+                                                          .orderNumber
+                                                          .toString(),
+                                                  style: const TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              )),
+                                              Text(
+                                                snapshot.data![index1]
+                                                        .amountProduct
+                                                        .toString() +
+                                                    ' ₽',
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          ),
+                                          ListView.builder(
+                                              physics:
+                                                  NeverScrollableScrollPhysics(),
+                                              shrinkWrap: true,
+                                              itemCount: snapshot.data![index1]
+                                                  .listProducts.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index2) {
+                                                return Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 10,
+                                                                horizontal: 15),
+                                                        child: Text(
+                                                          snapshot
+                                                              .data![index1]
+                                                              .listProducts[
+                                                                  index2]
+                                                              .nameProduct
+                                                              .toString(),
+                                                          style: const TextStyle(
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    snapshot
-                                                        .data![index1]
-                                                        .listProducts[index2]
-                                                        .priceProduct
-                                                        .toString() +
-                                                        ' ₽',
-                                                    style: const TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight: FontWeight.w400),
-                                                  ),
-                                                ],
-                                              );
-                                            })
-                                      ],
+                                                    Text(
+                                                      snapshot
+                                                              .data![index1]
+                                                              .listProducts[
+                                                                  index2]
+                                                              .priceProduct
+                                                              .toString() +
+                                                          ' ₽',
+                                                      style: const TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                  ],
+                                                );
+                                              })
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                );
-                              })
-                        ]);
-                  }
-                },
-              ),
-            ],
-          )
-        ),
+                                  );
+                                })
+                          ]);
+                    }
+                  },
+                ),
+              ],
+            )),
       ),
     );
   }
@@ -150,7 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 class image_picker extends StatefulWidget {
   String user = "";
-   image_picker( {Key? key ,required this.user }) : super(key: key);
+  image_picker({Key? key, required this.user}) : super(key: key);
 
   @override
   _image_pickerState createState() => _image_pickerState();
@@ -158,7 +177,7 @@ class image_picker extends StatefulWidget {
 
 class _image_pickerState extends State<image_picker> {
   File? pickedImage;
-  pickImages(ImageSource image)  async {
+  pickImages(ImageSource image) async {
     final photo = await ImagePicker().pickImage(source: image);
     if (photo == null) {
       return;
@@ -182,9 +201,7 @@ class _image_pickerState extends State<image_picker> {
         Container(
           width: 100,
           height: 100,
-          decoration: const BoxDecoration(
-
-          ),
+          decoration: const BoxDecoration(),
           child: IconButton(
               onPressed: () async {
                 pickImages(
@@ -193,35 +210,34 @@ class _image_pickerState extends State<image_picker> {
               },
               icon: pickedImage != null
                   ? CircleAvatar(
-                  backgroundColor: Colors.black,
-                  radius: 100,
-                  child: CircleAvatar(
-                    radius: 100,
-                    backgroundImage: Image.file(
-                      pickedImage!,
-                      fit: BoxFit.fill,
-                    ).image,
-                  ))
+                      backgroundColor: Colors.black,
+                      radius: 100,
+                      child: CircleAvatar(
+                        radius: 100,
+                        backgroundImage: Image.file(
+                          pickedImage!,
+                          fit: BoxFit.fill,
+                        ).image,
+                      ))
                   : SvgPicture.asset(
-                'assets/pick_profile.svg',
-                fit: BoxFit.cover,
-              )),
+                      'assets/pick_profile.svg',
+                      fit: BoxFit.cover,
+                    )),
         ),
         SizedBox(width: 20),
         Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:  [
+            children: [
               Text(
                 name,
-                style: const TextStyle(fontSize: 19 , fontWeight: FontWeight.w600),
+                style:
+                    const TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
               ),
-
             ],
           ),
         ),
-
       ],
     );
   }
